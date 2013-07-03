@@ -7,12 +7,19 @@
 //
 
 #import "BIDAppDelegate.h"
+#import "BIDSwitchViewController.h"
 
 @implementation BIDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.switchViewController = [[BIDSwitchViewController alloc] initWithNibName:@"SwitchView" bundle:nil];
+    UIView *switchView = self.switchViewController.view;
+    CGRect switchViewFrame = switchView.frame;
+    switchViewFrame.origin.y += [UIApplication sharedApplication].statusBarFrame.size.height;
+    switchView.frame = switchViewFrame;
+    [self.window addSubview:switchView];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
